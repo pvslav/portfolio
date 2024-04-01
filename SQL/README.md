@@ -7,7 +7,7 @@ Data cleaning, also known as data cleansing, is a critical step in the data prep
 
 Data cleaning typically involves the following tasks:
 
-- andling Missing Values: Identifying and dealing with missing data points.
+- Handling Missing Values: Identifying and dealing with missing data points.
 - Removing Duplicates: Identifying and removing duplicate records or entries from the dataset to avoid redundant information.
 - Standardizing Data: Ensuring consistent data formats, units, and representations across the dataset.
 - Data Transformation: Modifying original data to bring it into a suitable format for analysis, visualization, or other data processing tasks.
@@ -15,7 +15,7 @@ Data cleaning typically involves the following tasks:
 
 
 ## Datasets used
-This dataset contains one csv file named '[Uncleaned_DS_jobs.csv]()'.
+This dataset contains one csv file named '[Uncleaned_DS_jobs.csv](https://github.com/pvslav/portfolio/blob/main/SQL/Uncleaned_DS_jobs.csv)'.
 
 The initial columns and their type in the provided CSV file are:
 - index : int
