@@ -11,8 +11,8 @@ LIMIT 10;
 
 **Results:**
 
-| Column 1 | Column 2 | Column 3|
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-| Row 1    | Cell 2   | Cell 3  |
+|index|job_title|salary_estimate|job_description|rating|company_name|location|headquarters|size|founded|type_ownership|industry|sector|revenue|competitors|
+|-----|---------|---------------|---------------|------|------------|--------|------------|----|-------|--------------|--------|------|-------|-----------|
+|0|Sr Data Scientist|$137K-$171K (Glassdoor est.)|Description
 
 
