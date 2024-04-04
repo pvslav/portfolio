@@ -1,6 +1,6 @@
 # DS jobs Information
 
-Lets take a look at the first few rows to examine the data in its original form.
+Lets take a look at the few random rows to examine the data in its original form.
 
 ````sql
 SELECT *
