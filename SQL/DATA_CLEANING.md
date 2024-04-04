@@ -24,5 +24,15 @@ LIMIT 10;
 |487|Data Scientist, Applied Machine Learning - Bay Area|$95K-$119K (Glassdoor est.)|Passionate about precision medicine and advancing...|3.3|Tempus Labs 3.3|Redwood City, CA|Chicago, IL|501 to 1000 employees|2015|Company - Private|Biotech & Pharmaceuticals|Biotech & Pharmaceuticals|Unknown / Non-Applicable|-1|
 |9|Data Scientist|$137K-$171K (Glassdoor est.)|Ready to write the best chapter of your career? XSELL...|3.6|XSELL Technologies 3.6|Chicago, IL|Chicago, IL|51 to 200 employees|2014|Company - Private|Enterprise Software & Network Solutions|Information Technology|Unknown / Non-Applicable|-1|
 
+## Step 1. Create a new table to work with
+Lets create a temp table where we can manipulate and restructure the data without altering the original.
+
+````sql
+DROP TABLE IF EXISTS cleaned_ds_position;
+CREATE TABLE cleaned_ds_position AS (
+	SELECT
+		job_title,
+````
+
 
 
