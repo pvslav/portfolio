@@ -48,6 +48,8 @@ FROM
 WHERE 
   table_name = 'cleaned_jobs';
 ````
+![Table_structure](/images/table_structure.png)
+
 
 
 
