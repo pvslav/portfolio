@@ -48,7 +48,7 @@ FROM
 WHERE 
   table_name = 'cleaned_jobs';
 ````
-!(https://github.com/pvslav/portfolio/blob/main/SQL/images/table_structure.png)
+![table_structure](/SQL/images/table_structure.png)
 
 
 
