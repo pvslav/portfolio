@@ -33,6 +33,21 @@ CREATE TABLE cleaned_jobs AS
 SELECT *
 FROM ds_position;
 ````
+## Step 2. Examine the table structure
+As a next step we'll examine the structure of our table to retrieve information about the columns in the table.
+
+````sql
+SELECT 
+  column_name, 
+  data_type, 
+  character_maximum_length, 
+  is_nullable, 
+  column_default 
+FROM 
+  information_schema.columns 
+WHERE 
+  table_name = 'cleaned_jobs';
+````
 
 
 
