@@ -28,10 +28,10 @@ LIMIT 10;
 Lets create a temp table where we can manipulate and restructure the data without altering the original.
 
 ````sql
-DROP TABLE IF EXISTS cleaned_ds_position;
-CREATE TABLE cleaned_ds_position AS (
-	SELECT
-		job_title,
+DROP TABLE IF EXISTS cleaned_jobs;
+CREATE TABLE cleaned_jobs AS 
+SELECT *
+FROM ds_position;
 ````
 
 
