@@ -50,6 +50,15 @@ WHERE
 ````
 ![table_structure](/SQL/images/table_structure.png)
 
+## Step 3. Extract unnecessary characters
+For our next step, we will be extracting the ‘(Glassdoor est.)” values from the column "salary_estimate" keeping just the figures.
+
+````sql
+-- examine salary_estimate column
+SELECT alary_estimate
+FROM cleaned_jobs
+LIMIT 5
+````
 
 
 
