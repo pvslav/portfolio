@@ -55,10 +55,10 @@ For our next step, we will be extracting the ‘(Glassdoor est.)” values from 
 
 ````sql
 -- examine salary_estimate column
-SELECT alary_estimate
+SELECT salary_estimate
 FROM cleaned_jobs
 LIMIT 5
 ````
-
+![salary_column](/SQL/images/salary_column.png)
 
 
