@@ -61,4 +61,9 @@ LIMIT 5
 ````
 ![salary_column](/SQL/images/salary_column.png)
 
+````sql
+UPDATE cleaned_jobs 
+SET salary_estimate = REGEXP_REPLACE(salary_estimate , '(\$[0-9]+K-\$[0-9]+K).*', '\1')
+````
+
 
