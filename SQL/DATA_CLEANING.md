@@ -65,5 +65,5 @@ LIMIT 5
 UPDATE cleaned_jobs 
 SET salary_estimate = REGEXP_REPLACE(salary_estimate , '(\$[0-9]+K-\$[0-9]+K).*', '\1')
 ````
-
+![salary_cleaned](/SQL/images/salary_cleaned.png)
 
