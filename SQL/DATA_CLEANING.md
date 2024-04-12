@@ -67,3 +67,14 @@ SET salary_estimate = REGEXP_REPLACE(salary_estimate , '(\$[0-9]+K-\$[0-9]+K).*'
 ````
 ![salary_cleaned](/SQL/images/salary_cleaned.png)
 
+## Step 4. Clean the company_name column
+As  we can  seen  the column "company_name" contains some unnecessary characters that needs to be removed. We can do this using the following query
+````sql
+UPDATE cleaned_jobs
+SET company_name = 
+    CASE 
+        WHEN POSITION(E'\n' IN company_name) > 0 
+        THEN SUBSTRING(company_name FROM 1 FOR POSITION(E'\n' IN company_name) - 1) 
+        ELSE company_name 
+    END;
+````
