@@ -78,3 +78,4 @@ SET company_name =
         ELSE company_name 
     END;
 ````
+![new_colunm_name](/SQL/images/new_column_name.png)
