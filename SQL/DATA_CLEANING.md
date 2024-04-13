@@ -83,3 +83,11 @@ SET company_name =
 ## Step 5. Fix the size column
 To make the column "size" look more attractive, we will replace "to" with "-".
 
+````sql
+UPDATE cleaned_jobs
+SET size = 
+    CASE
+        WHEN size = '-1' THEN NULL
+        ELSE REPLACE(size, ' to ', '-')
+    END;
+````
