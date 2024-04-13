@@ -79,3 +79,7 @@ SET company_name =
     END;
 ````
 ![new_colunm_name](/SQL/images/new_column_name.png)
+
+## Step 5. Fix the size column
+To make the column "size" look more attractive, we will replace "to" with "-".
+
