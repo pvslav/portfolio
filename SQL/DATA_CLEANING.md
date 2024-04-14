@@ -119,3 +119,4 @@ BEGIN
 END;
 $$;
 ````
+![replace_values](/SQL/images/replace_values.png)
