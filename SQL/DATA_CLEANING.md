@@ -95,3 +95,27 @@ SET size =
 
 ## Step 6. Replace the value "-1"
 As you can see in the origin table above, some colunm have the value "-1". We will replace this value with NULL.
+
+
+````sql
+DO
+$$
+DECLARE
+    v_table_name VARCHAR(255) := 'cleaned_jobs';
+    v_column_name VARCHAR(255);
+    v_sql_query VARCHAR(1000);
+BEGIN
+    -- Создаем курсор для обхода всех столбцов в таблице
+    FOR v_column_name IN
+        SELECT column_name
+        FROM information_schema.columns
+        WHERE table_name = v_table_name
+    LOOP
+        -- Формируем динамический SQL-запрос для обновления значений
+        v_sql_query := 'UPDATE ' || quote_ident(v_table_name) || ' SET ' || quote_ident(v_column_name) || ' = NULL WHERE ' || quote_ident(v_column_name) || ' = ''-1''';
+        -- Выполняем динамический SQL-запрос
+        EXECUTE v_sql_query;
+    END LOOP;
+END;
+$$;
+````
