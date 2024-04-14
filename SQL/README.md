@@ -15,7 +15,7 @@ Data cleaning typically involves the following tasks:
 
 
 ## Datasets used
-This dataset contains one csv file named '[Uncleaned_DS_jobs.csv](https://github.com/pvslav/portfolio/blob/main/SQL/Uncleaned_DS_jobs.csv)'.
+This dataset contains one csv file named '[Uncleaned_DS_jobs.csv](https://github.com/pvslav/portfolio/blob/main/SQL/DATA_CLEANING.md))'.
 
 The initial columns and their type in the provided CSV file are:
 - index : int
