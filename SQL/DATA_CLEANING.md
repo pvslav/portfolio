@@ -91,3 +91,4 @@ SET size =
         ELSE REPLACE(size, ' to ', '-')
     END;
 ````
+![size_column](/SQL/images/size_column.png)
