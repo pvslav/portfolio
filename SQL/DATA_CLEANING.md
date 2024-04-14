@@ -105,15 +105,15 @@ DECLARE
     v_column_name VARCHAR(255);
     v_sql_query VARCHAR(1000);
 BEGIN
-    -- Создаем курсор для обхода всех столбцов в таблице
+    -- Create a cursor to iterate through all columns in the table
     FOR v_column_name IN
         SELECT column_name
         FROM information_schema.columns
         WHERE table_name = v_table_name
     LOOP
-        -- Формируем динамический SQL-запрос для обновления значений
+        -- Generate a dynamic SQL query to update values
         v_sql_query := 'UPDATE ' || quote_ident(v_table_name) || ' SET ' || quote_ident(v_column_name) || ' = NULL WHERE ' || quote_ident(v_column_name) || ' = ''-1''';
-        -- Выполняем динамический SQL-запрос
+        -- Execute a dynamic SQL query
         EXECUTE v_sql_query;
     END LOOP;
 END;
