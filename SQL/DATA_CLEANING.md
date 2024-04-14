@@ -92,3 +92,6 @@ SET size =
     END;
 ````
 ![size_column](/SQL/images/size_column.png)
+
+## Step 6. Replace the value "-1"
+As you can see in the origin table above, some colunm have the value "-1". We will replace this value with NULL.
