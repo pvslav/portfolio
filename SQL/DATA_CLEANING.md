@@ -120,3 +120,6 @@ END;
 $$;
 ````
 ![replace_values](/SQL/images/replace_values.png)
+
+## Step 7. Clean the type_ownership column. 
+This column contains data we need to standardize, i.e changing the “Company — Private” and “Company — Public” values for easier reading.
