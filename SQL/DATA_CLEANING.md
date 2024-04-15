@@ -126,7 +126,7 @@ $$;
 This column contains data we need to standardize, i.e changing the “Company — Private” and “Company — Public” values for easier reading.
 
 ````sql
-PDATE cleaned_jobs
+UPDATE cleaned_jobs
 SET type_ownership = 
     CASE 
         WHEN type_ownership = 'Company - Private' THEN 'Private Company'
