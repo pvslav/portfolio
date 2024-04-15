@@ -121,5 +121,16 @@ $$;
 ````
 ![replace_values](/SQL/images/replace_values.png)
 
+
 ## Step 7. Clean the type_ownership column. 
 This column contains data we need to standardize, i.e changing the “Company — Private” and “Company — Public” values for easier reading.
+
+````sql
+PDATE cleaned_jobs
+SET type_ownership = 
+    CASE 
+        WHEN type_ownership = 'Company - Private' THEN 'Private Company'
+        WHEN type_ownership = 'Company - Public' THEN 'Public Company'
+        ELSE type_ownership -- Keeps other values unchanged
+    END;
+````
