@@ -139,3 +139,4 @@ SELECT type_ownership
 FROM cleaned_jobs
 GROUP BY type_ownership
 ````
+![ownership](/SQL/images/ownership.png)
