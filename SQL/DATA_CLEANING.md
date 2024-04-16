@@ -140,3 +140,6 @@ FROM cleaned_jobs
 GROUP BY type_ownership
 ````
 ![ownership](/SQL/images/ownership.png)
+
+## Step 8. Find the duplicate entries. 
+All job ostings must have a unique index to join. Lets try to find duplicate entries.
