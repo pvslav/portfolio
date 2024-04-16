@@ -134,3 +134,8 @@ SET type_ownership =
         ELSE type_ownership -- Keeps other values unchanged
     END;
 ````
+````sql
+SELECT type_ownership
+FROM cleaned_jobs
+GROUP BY type_ownership
+````
