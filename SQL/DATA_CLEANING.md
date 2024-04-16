@@ -142,4 +142,11 @@ GROUP BY type_ownership
 ![ownership](/SQL/images/ownership.png)
 
 ## Step 8. Find the duplicate entries. 
-All job ostings must have a unique index to join. Lets try to find duplicate entries.
+All job postings must have a unique index. Lets try to find duplicate entries.
+
+````sql
+SELECT index,count(index)
+FROM cleaned_jobs
+GROUP BY index
+HAVING count(index) > 1
+````
