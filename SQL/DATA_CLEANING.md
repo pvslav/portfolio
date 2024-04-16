@@ -150,3 +150,4 @@ FROM cleaned_jobs
 GROUP BY index
 HAVING count(index) > 1
 ````
+Our query shows that we have no duplicate entries.
