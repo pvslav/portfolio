@@ -6,9 +6,10 @@ First, we import the required libraries:
 - requests: to retrieve data from the API.
 - pandas: to transform the data.
 - sqlalchemy: to load the transformed data into PostgreSQL.
-'''python
+
+````python
 import requests
 import pandas as pd
 from sqlalchemy import create_engine
-'''
+````
   
