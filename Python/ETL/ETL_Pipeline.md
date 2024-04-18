@@ -32,3 +32,4 @@ def transform(data:dict) -> pd.DataFrame:
     pd.set_option('display.max_colwidth', None)
     return df[["name", "web_pages"]]
 ````
+![berlin_uni](/Python/ETL/images/berlin_uni.png)
