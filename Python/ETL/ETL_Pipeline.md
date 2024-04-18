@@ -12,4 +12,11 @@ import requests
 import pandas as pd
 from sqlalchemy import create_engine
 ````
-  
+Next we write a function to extract the data from the API. From this API we'll get the data about all the universities in Germany.
+
+````python
+def extract()-> dict:
+    API_URL = "http://universities.hipolabs.com/search?country=Germany"
+    data = requests.get(API_URL).json()
+    return data
+````
