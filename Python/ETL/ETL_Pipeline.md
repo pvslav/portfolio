@@ -34,6 +34,21 @@ def transform(data:dict) -> pd.DataFrame:
 ````
 ![berlin_uni](/Python/ETL/images/berlin_uni.png)
 
+Then we create a new schema. 
+
+````python
+from sqlalchemy import create_engine, inspect
+from sqlalchemy.schema import CreateSchema
+
+schema = "uni"
+connectable = create_engine("postgresql+psycopg2://postgres@localhost/postgres")
+
+with connectable.connect() as connection:
+    if not inspect(connection).has_schema(schema):
+        connection.execute(CreateSchema(schema))
+        connection.commit()
+````
+
 ````python
 def load(df: pd.DataFrame) -> None:
     """Loads data into a PostgreSQL database."""
