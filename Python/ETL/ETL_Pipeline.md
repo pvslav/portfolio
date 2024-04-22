@@ -80,3 +80,11 @@ First we will rename the "state-province" column.
 ````sql
 ALTER TABLE uni.universities  RENAME COLUMN "state-province" TO state_province;
 ````
+
+And finally, we will replace the null value with "Berlin" if there is this value in the name column.
+
+````sql
+UPDATE uni.universities 
+SET state_province = 'Berlin'
+WHERE name LIKE '%Berlin%' AND state_province IS NULL;
+````
