@@ -10,7 +10,8 @@ First, we import the required libraries:
 ````python
 import requests
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text, inspect,MetaData, Table, Column, String
+from sqlalchemy.schema import CreateSchema
 ````
 Next we write a function to extract the data from the API. From this API we'll get the data about all the universities in Germany.
 
