@@ -46,6 +46,20 @@ with connectable.connect() as connection:
         connection.execute(CreateSchema(schema))
         connection.commit()
 ````
+As the next step we create a university table in the “uni” schema. 
+
+````python
+metadata = MetaData(schema=schema)
+universities_table = Table('universities', metadata,
+                          Column('name', String),
+                          Column('web_pages', String),
+                          Column('alpha_two_code',String),
+                          Column('state-province',String),
+                          Column('domains',String),
+                          Column('country',String)
+                          )
+metadata.create_all(connectable)
+````
 
 ````python
 def load(df: pd.DataFrame) -> None:
