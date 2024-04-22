@@ -30,7 +30,7 @@ def transform(data:dict) -> pd.DataFrame:
     df['domains'] = [','.join(map(str, l)) for l in df['domains']]
     df['web_pages'] = [','.join(map(lambda x: x.rstrip('/'), l)) for l in df['web_pages']]
     pd.set_option('display.max_colwidth', None)
-    return df[["name", "web_pages"]]
+    return df
 ````
 ![berlin_uni](/Python/ETL/images/berlin_uni.png)
 
