@@ -88,3 +88,4 @@ UPDATE uni.universities
 SET state_province = 'Berlin'
 WHERE name LIKE '%Berlin%' AND state_province IS NULL;
 ````
+![final_uni](/Python/ETL/images/final_uni.png)
