@@ -38,9 +38,6 @@ def transform(data:dict) -> pd.DataFrame:
 Then we create a new schema. 
 
 ````python
-from sqlalchemy import create_engine, inspect
-from sqlalchemy.schema import CreateSchema
-
 schema = "uni"
 connectable = create_engine("postgresql+psycopg2://postgres@localhost/postgres")
 
