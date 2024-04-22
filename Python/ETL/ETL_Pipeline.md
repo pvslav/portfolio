@@ -70,3 +70,5 @@ df = transform(data)
 # Loading data into the table
 df.to_sql('universities', connectable, schema=schema, if_exists='replace', index=False)
 ````
+This is what our table looks like after loading the data.
+![uni_table](/Python/ETL/images/uni_table.png)
