@@ -1,0 +1,62 @@
+<People>
+    <Person>
+        <Name>Lucas Baker</Name>
+        <Weight_lbs>175</Weight_lbs>
+        <Height_in>70</Height_in>
+        <City>San Francisco</City>
+    </Person>
+    <Person>
+        <Name>Madison Young</Name>
+        <Weight_lbs>160</Weight_lbs>
+        <Height_in>68</Height_in>
+        <City>Los Angeles</City>
+    </Person>
+    <Person>
+        <Name>Logan Wright</Name>
+        <Weight_lbs>145</Weight_lbs>
+        <Height_in>65</Height_in>
+        <City>Chicago</City>
+    </Person>
+    <Person>
+        <Name>Sophia Hall</Name>
+        <Weight_lbs>155</Weight_lbs>
+        <Height_in>66</Height_in>
+        <City>Miami</City>
+    </Person>
+    <Person>
+        <Name>William Gonzalez</Name>
+        <Weight_lbs>185</Weight_lbs>
+        <Height_in>72</Height_in>
+        <City>Boston</City>
+    </Person>
+    <Person>
+        <Name>Emma Perez</Name>
+        <Weight_lbs>140</Weight_lbs>
+        <Height_in>64</Height_in>
+        <City>Seattle</City>
+    </Person>
+    <Person>
+        <Name>Liam Rodriguez</Name>
+        <Weight_lbs>170</Weight_lbs>
+        <Height_in>69</Height_in>
+        <City>Portland</City>
+    </Person>
+    <Person>
+        <Name>Grace Taylor</Name>
+        <Weight_lbs>150</Weight_lbs>
+        <Height_in>67</Height_in>
+        <City>Atlanta</City>
+    </Person>
+    <Person>
+        <Name>Nicholas Martinez</Name>
+        <Weight_lbs>130</Weight_lbs>
+        <Height_in>63</Height_in>
+        <City>Denver</City>
+    </Person>
+    <Person>
+        <Name>Ava White</Name>
+        <Weight_lbs>190</Weight_lbs>
+        <Height_in>74</Height_in>
+        <City>Dallas</City>
+    </Person>
+</People>

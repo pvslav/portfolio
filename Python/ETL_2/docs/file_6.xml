@@ -1,0 +1,62 @@
+<People>
+    <Person>
+        <Name>Harper Scott</Name>
+        <Weight_lbs>155</Weight_lbs>
+        <Height_in>66</Height_in>
+        <City>Phoenix</City>
+    </Person>
+    <Person>
+        <Name>Henry Perez</Name>
+        <Weight_lbs>140</Weight_lbs>
+        <Height_in>64</Height_in>
+        <City>Detroit</City>
+    </Person>
+    <Person>
+        <Name>Amelia Nguyen</Name>
+        <Weight_lbs>125</Weight_lbs>
+        <Height_in>62</Height_in>
+        <City>Washington D.C.</City>
+    </Person>
+    <Person>
+        <Name>Jack Hernandez</Name>
+        <Weight_lbs>200</Weight_lbs>
+        <Height_in>76</Height_in>
+        <City>Minneapolis</City>
+    </Person>
+    <Person>
+        <Name>Oliver King</Name>
+        <Weight_lbs>135</Weight_lbs>
+        <Height_in>63</Height_in>
+        <City>Charlotte</City>
+    </Person>
+    <Person>
+        <Name>Charlotte Turner</Name>
+        <Weight_lbs>170</Weight_lbs>
+        <Height_in>71</Height_in>
+        <City>San Francisco</City>
+    </Person>
+    <Person>
+        <Name>Daniel Adams</Name>
+        <Weight_lbs>145</Weight_lbs>
+        <Height_in>64</Height_in>
+        <City>Austin</City>
+    </Person>
+    <Person>
+        <Name>Grace Lee</Name>
+        <Weight_lbs>155</Weight_lbs>
+        <Height_in>65</Height_in>
+        <City>Seattle</City>
+    </Person>
+    <Person>
+        <Name>William Rodriguez</Name>
+        <Weight_lbs>160</Weight_lbs>
+        <Height_in>67</Height_in>
+        <City>Denver</City>
+    </Person>
+    <Person>
+        <Name>Ava Martinez</Name>
+        <Weight_lbs>175</Weight_lbs>
+        <Height_in>69</Height_in>
+        <City>Portland</City>
+    </Person>
+</People>

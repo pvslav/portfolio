@@ -1,0 +1,62 @@
+[
+    {
+        "Name": "Alexander Brown",
+        "Weight (lbs)": 165,
+        "Height (in)": 68,
+        "City": "San Francisco"
+    },
+    {
+        "Name": "Olivia Clark",
+        "Weight (lbs)": 150,
+        "Height (in)": 65,
+        "City": "Austin"
+    },
+    {
+        "Name": "Ethan Scott",
+        "Weight (lbs)": 175,
+        "Height (in)": 71,
+        "City": "Seattle"
+    },
+    {
+        "Name": "Sophia Lewis",
+        "Weight (lbs)": 140,
+        "Height (in)": 66,
+        "City": "Denver"
+    },
+    {
+        "Name": "Benjamin Hall",
+        "Weight (lbs)": 190,
+        "Height (in)": 74,
+        "City": "Portland"
+    },
+    {
+        "Name": "Isabella Green",
+        "Weight (lbs)": 155,
+        "Height (in)": 67,
+        "City": "Atlanta"
+    },
+    {
+        "Name": "William Martinez",
+        "Weight (lbs)": 170,
+        "Height (in)": 69,
+        "City": "Los Angeles"
+    },
+    {
+        "Name": "Sophia Carter",
+        "Weight (lbs)": 145,
+        "Height (in)": 64,
+        "City": "San Diego"
+    },
+    {
+        "Name": "James Brown",
+        "Weight (lbs)": 180,
+        "Height (in)": 68,
+        "City": "Houston"
+    },
+    {
+        "Name": "Charlotte Perez",
+        "Weight (lbs)": 130,
+        "Height (in)": 62,
+        "City": "Dallas"
+    }
+]
