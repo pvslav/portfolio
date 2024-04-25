@@ -42,3 +42,6 @@ Conversion complete.
 Converting file_4.json to NDJSON...
 Conversion complete.
 ```
+And this is what our converted file looks like
+
+![ndjson_file](/Python/ETL_2/images/ndjson.png)
