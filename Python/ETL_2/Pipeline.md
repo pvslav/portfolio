@@ -31,4 +31,9 @@ for json_file in json_files:
     convert_to_ndjson(json_file, output_file)
     print("Conversion complete.")
 ```
-    
+```python
+Converting file_3.json to NDJSON...
+Conversion complete.
+Converting file_4.json to NDJSON...
+Conversion complete.
+```
