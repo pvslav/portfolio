@@ -4,6 +4,9 @@ In this project, we'll be extracting data from the different file's formats, tra
 ## Step 1. Conversion of JSON file to NDJSON.
 Converting JSON format with an array to NDJSON (Newline-Delimited JSON) or JSON Lines format is quite common practice, especially when working with large data sets. NDJSON allows you to process data row by row, making operations such as filtering, transforming, and loading data easier and faster. Many tools and technologies (eg Bash, Python, Spark) are better suited to working with row-by-row data.
 
+Our json file looks like this
+![json_file](/Python/ETL_2/images/json_file.png)
+
 We'll write a function, that converts JSON to NDJSON.
 ```python
 import os
