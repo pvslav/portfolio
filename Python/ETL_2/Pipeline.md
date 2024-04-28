@@ -54,7 +54,7 @@ def extract_from_json(file_to_process):
     dataframe = pd.read_json(file_to_process, lines=True)
     return dataframe
 ```
-We have json and ndjson files in the directory and we need to extract data from ndjson files only.
+This function extracts data from json files.
 ```python
 def extract_from_json(file_to_process):
     dataframe = pd.read_json(file_to_process, lines=True)
