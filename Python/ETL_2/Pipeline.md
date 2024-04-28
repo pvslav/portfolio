@@ -45,3 +45,12 @@ Conversion complete.
 And this is what our converted file looks like
 
 ![ndjson_file](/Python/ETL_2/images/ndjson.png)
+
+## Step 2. Extract data.
+Now we need to extract data from different formats and put them into one file. First we will write three functions that will extract data from the appropriate formats.
+
+```python
+def extract_from_json(file_to_process):
+    dataframe = pd.read_json(file_to_process, lines=True)
+    return dataframe
+```
