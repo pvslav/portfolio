@@ -76,3 +76,22 @@ def extract_from_xml(file_to_process):
         dataframe = pd.concat([dataframe, pd.DataFrame([{"Name": name, "Weight": weight, "Height": height, "City": city}])], ignore_index=True)
     return dataframe
 ```
+Finally we collect data from all the files.
+```python
+def extract():
+    extracted_data = pd.DataFrame(columns=['Name', 'Weight', 'Height', 'City'])
+
+    # процессируем все csv файлы
+    for csvfile in glob.glob("*.csv"):
+        extracted_data = pd.concat([extracted_data, extract_from_csv(csvfile)], ignore_index=True)
+
+    # процессируем все json файлы
+    for jsonfile in glob.glob("*.ndjson"):
+        extracted_data = pd.concat([extracted_data, extract_from_json(jsonfile)], ignore_index=True)
+
+    # процессируем все xml файлы
+    for xmlfile in glob.glob("*.xml"):
+        extracted_data = pd.concat([extracted_data, extract_from_xml(xmlfile)], ignore_index=True)
+
+    return extracted_data
+```
