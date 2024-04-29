@@ -47,30 +47,32 @@ And this is what our converted file looks like
 ![ndjson_file](/Python/ETL_2/images/ndjson.png)
 
 ## Step 2. Extract data.
-Now we need to extract data from different formats and put them into one file. First we will write three functions that will extract data from the appropriate formats.
+Now we need to extract data from different formats and put them into one file. First we will write three functions that will extract data from the appropriate formats. To avoid any issues when combining data into a single file in the future, we need to standardize the column formats in our files.
 
 ```python
-def extract_from_json(file_to_process):
-    dataframe = pd.read_json(file_to_process, lines=True)
+def extract_from_csv(file_to_process):
+    dataframe = pd.read_csv(file_to_process)
+    dataframe.columns = ['Name', 'Weight', 'Height', 'City']  # Rename columns
     return dataframe
 ```
 This function extracts data from json files.
 ```python
 def extract_from_json(file_to_process):
     dataframe = pd.read_json(file_to_process, lines=True)
+    dataframe.columns = ['Name', 'Weight', 'Height', 'City']  # Rename columns
     return dataframe
 ```
 This function extracts data from xml files.
 ```python
-def extract_from_xml(file_to):
-    dataframe = pd.DataFrame(columns=["Name", "Weight_lbs", "Height_in", "City"])
-    tree = ET.parse(file_to)
+def extract_from_xml(file_to_process):
+    dataframe = pd.DataFrame(columns=["Name", "Weight", "Height", "City"])
+    tree = ET.parse(file_to_process)
     root = tree.getroot()
     for person in root:
         name = person.find("Name").text
         height = float(person.find("Height_in").text)
         weight = float(person.find("Weight_lbs").text)
         city = person.find("City").text
-        dataframe = pd.concat([dataframe, pd.DataFrame([{"Name": name, "Weight_lbs": weight, "Height_in": height, "City": city}])], ignore_index=True)
+        dataframe = pd.concat([dataframe, pd.DataFrame([{"Name": name, "Weight": weight, "Height": height, "City": city}])], ignore_index=True)
     return dataframe
 ```
