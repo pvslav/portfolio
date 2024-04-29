@@ -62,15 +62,15 @@ def extract_from_json(file_to_process):
 ```
 This function extracts data from xml files.
 ```python
-def extract_from_xml(file_to_process):
-    dataframe = pd.DataFrame(columns=["name", "height", "weight","city"])
-    tree = ET.parse(file_to_process)
+def extract_from_xml(file_to):
+    dataframe = pd.DataFrame(columns=["Name", "Weight_lbs", "Height_in", "City"])
+    tree = ET.parse(file_to)
     root = tree.getroot()
     for person in root:
-        name = person.find("name").text
-        height = float(person.find("height").text)
-        weight = float(person.find("weight").text)
-        city = person.find("city").text
-        dataframe = pd.concat([dataframe, pd.DataFrame([{"name":name, "height":height, "weight":weight, "city":city}])], ignore_index=True)
+        name = person.find("Name").text
+        height = float(person.find("Height_in").text)
+        weight = float(person.find("Weight_lbs").text)
+        city = person.find("City").text
+        dataframe = pd.concat([dataframe, pd.DataFrame([{"Name": name, "Weight_lbs": weight, "Height_in": height, "City": city}])], ignore_index=True)
     return dataframe
 ```
