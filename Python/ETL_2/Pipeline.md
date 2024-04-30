@@ -51,9 +51,19 @@ Now we need to extract data from different formats and put them into one file. F
 
 ```python
 def extract_from_csv(file_to_process):
-    dataframe = pd.read_csv(file_to_process)
-    dataframe.columns = ['Name', 'Weight', 'Height', 'City']  # Rename columns
-    return dataframe
+    try:
+        dataframe = pd.read_csv(file_to_process)
+        if len(dataframe.columns) == 4:  # Check if there are 4 columns
+            dataframe.columns = ['Name', 'Weight', 'Height', 'City']  # Rename the columns
+            return dataframe
+        else:
+            print(f"Error: file {file_to_process} has an incorrect number of columns.")
+    except Exception as e:
+        if "No columns to parse from file" in str(e):
+            print(f"Error: file {file_to_process} is empty or invalid.")
+        else:
+            print(f"Error processing file {file_to_process}: {e}")
+    return None
 ```
 This function extracts data from json files.
 ```python
