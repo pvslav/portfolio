@@ -100,3 +100,18 @@ def extract():
 If we look at the column names in the files, we will see that in the height column the data is given in inches, and in the weight column the data is in pounds. We need to convert the data in these columns: inches to meters, pounds to kilograms. We will do this in the transform function.
 
 ![convet_measures](/Python/ETL_2/images/convert_measures.png)
+
+```python
+def transform(data):
+    '''Convert inches to meters and round off to two decimals
+    1 inch is 0.0254 meters '''
+    data['Height'] = data['Height'].apply(pd.to_numeric, errors='coerce') * 0.0254
+    data['Height'] = data['Height'].round(2)
+
+    '''Convert pounds to kilograms and round off to two decimals
+    1 pound is 0.45359237 kilograms '''
+    data['Weight'] = data['Weight'].apply(pd.to_numeric, errors='coerce') * 0.45359237
+    data['Weight'] = data['Weight'].round(2)
+
+    return data
+```
