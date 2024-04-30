@@ -95,3 +95,8 @@ def extract():
 
     return extracted_data
 ```
+## Step 2. Transform data.
+
+If we look at the column names in the files, we will see that in the height column the data is given in inches, and in the weight column the data is in pounds. We need to convert the data in these columns: inches to meters, pounds to kilograms. We will do this in the transform function.
+
+![convet_measures](/Python/ETL_2/images/convert_measures.png)
