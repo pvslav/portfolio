@@ -91,15 +91,15 @@ Finally we collect data from all the files.
 def extract():
     extracted_data = pd.DataFrame(columns=['Name', 'Weight', 'Height', 'City'])
 
-    # процессируем все csv файлы
+    # process all csv files
     for csvfile in glob.glob("*.csv"):
         extracted_data = pd.concat([extracted_data, extract_from_csv(csvfile)], ignore_index=True)
 
-    # процессируем все json файлы
+    # process all json files
     for jsonfile in glob.glob("*.ndjson"):
         extracted_data = pd.concat([extracted_data, extract_from_json(jsonfile)], ignore_index=True)
 
-    # процессируем все xml файлы
+    # process all xml files
     for xmlfile in glob.glob("*.xml"):
         extracted_data = pd.concat([extracted_data, extract_from_xml(xmlfile)], ignore_index=True)
 
