@@ -52,20 +52,23 @@ Now we need to extract data from different formats and put them into one file. F
 ```python
 def extract_from_csv(file_to_process):
     try:
-        dataframe = pd.read_csv(file_to_process)
-        if len(dataframe.columns) == 4:  # Check if there are 4 columns
-            dataframe.columns = ['Name', 'Weight', 'Height', 'City']  # Rename the columns
-            return dataframe
-        else:
-            print(f"Error: file {file_to_process} has an incorrect number of columns.")
+        dataframe = pd.read_csv(file_to_process, header=0)  # Read CSV file, first row as headers
+        
+        if 'Unnamed: 0' in dataframe.columns:
+            dataframe = dataframe.drop('Unnamed: 0', axis=1)
+        
+        known_cols = ['Name', 'Weight', 'Height', 'City']
+        existing_cols = list(dataframe.columns)
+        col_mapping = {col: known_col for known_col, col in zip(known_cols, existing_cols)}
+        dataframe = dataframe.rename(columns=col_mapping)
+        
+        return dataframe
     except Exception as e:
-        if "No columns to parse from file" in str(e):
-            print(f"Error: file {file_to_process} is empty or invalid.")
-        else:
-            print(f"Error processing file {file_to_process}: {e}")
-    return None
+        print(f"Error processing file {file_to_process}: {e}")
+        return dataframe  # Return an empty DataFrame in case of an err
 ```
 This function extracts data from json files.
+
 ```python
 def extract_from_json(file_to_process):
     dataframe = pd.read_json(file_to_process, lines=True)
@@ -73,6 +76,7 @@ def extract_from_json(file_to_process):
     return dataframe
 ```
 This function extracts data from xml files.
+
 ```python
 def extract_from_xml(file_to_process):
     dataframe = pd.DataFrame(columns=["Name", "Weight", "Height", "City"])
@@ -87,6 +91,7 @@ def extract_from_xml(file_to_process):
     return dataframe
 ```
 Finally we collect data from all the files.
+
 ```python
 def extract():
     extracted_data = pd.DataFrame(columns=['Name', 'Weight', 'Height', 'City'])
