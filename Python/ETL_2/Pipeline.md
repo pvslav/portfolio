@@ -135,9 +135,19 @@ def transform(data):
 ```
 ## Step 4. Loading and Logging.
 
-We need to load the transformed data to a CSV file that we can use to load to a database as per requirement. We need a function load_data() that accepts the transformed data as a dataframe and the target_file path. We also need to use the to_csv attribute of the dataframe in the function.
+We need to load the transformed data to a CSV file that we can use to load to a database as per requirement. We need a function load_data() that accepts the transformed data as a dataframe and the target_file path. We also need to use the to_csv attribute of the dataframe in the function. 
 
 ```python
 def load_data(target_file, transformed_data): 
     transformed_data.to_csv(target_file) 
+```
+Finally, we need to implement the logging operation to record the progress of the different operations.
+
+```python
+def log_progress(message): 
+    timestamp_format = '%Y-%h-%d-%H:%M:%S' # Year-Monthname-Day-Hour-Minute-Second 
+    now = datetime.now() # get current timestamp 
+    timestamp = now.strftime(timestamp_format) 
+    with open(log_file,"a") as f: 
+        f.write(timestamp + ',' + message + '\n') 
 ```
