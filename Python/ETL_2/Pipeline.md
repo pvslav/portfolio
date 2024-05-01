@@ -15,6 +15,9 @@ import os
 import json
 import glob
 
+log_file = "log_file.txt" 
+target_file = "transformed_data.csv" 
+
 # Converting JSON to NDJSON
 def convert_to_ndjson(input_file, output_file):
     with open(input_file, "r") as f:
@@ -110,7 +113,7 @@ def extract():
 
     return extracted_data
 ```
-## Step 2. Transform data.
+## Step 3. Transform data.
 
 If we look at the column names in the files, we will see that in the height column the data is given in inches, and in the weight column the data is in pounds. We need to convert the data in these columns: inches to meters, pounds to kilograms. We will do this in the transform function.
 
@@ -129,4 +132,12 @@ def transform(data):
     data['Weight'] = data['Weight'].round(2)
 
     return data
+```
+## Step 4. Loading and Logging.
+
+We need to load the transformed data to a CSV file that we can use to load to a database as per requirement. We need a function load_data() that accepts the transformed data as a dataframe and the target_file path. We also need to use the to_csv attribute of the dataframe in the function.
+
+```python
+def load_data(target_file, transformed_data): 
+    transformed_data.to_csv(target_file) 
 ```
