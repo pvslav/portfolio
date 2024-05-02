@@ -5,8 +5,8 @@ import pandas as pd
 import xml.etree.ElementTree as ET 
 from datetime import datetime 
 
-log_file = "ETL_changed/log_file.txt"
-target_file = "ETL_changed/transformed_data.csv"
+log_file = "log_file.txt"
+target_file = "transformed_data.csv"
 
 # Converting JSON to NDJSON
 def convert_to_ndjson(input_file, output_file):
@@ -19,7 +19,7 @@ def convert_to_ndjson(input_file, output_file):
             f.write("\n")
 
 # Find all files with the .json extension in the current directory
-json_files = glob.glob("ETL_changed/*.json")
+json_files = glob.glob("*.json")
 
 # Converting the found JSON files to NDJSON
 for json_file in json_files:
@@ -68,15 +68,15 @@ def extract():
     extracted_data = pd.DataFrame(columns=['Name', 'Weight', 'Height', 'City'])
 
     # процессируем все csv файлы
-    for csvfile in glob.glob("ETL_changed/*.csv"):
+    for csvfile in glob.glob("*.csv"):
         extracted_data = pd.concat([extracted_data, extract_from_csv(csvfile)], ignore_index=True)
 
     # процессируем все json файлы
-    for jsonfile in glob.glob("ETL_changed/*.ndjson"):
+    for jsonfile in glob.glob("*.ndjson"):
         extracted_data = pd.concat([extracted_data, extract_from_json(jsonfile)], ignore_index=True)
 
     # процессируем все xml файлы
-    for xmlfile in glob.glob("ETL_changed/*.xml"):
+    for xmlfile in glob.glob("*.xml"):
         extracted_data = pd.concat([extracted_data, extract_from_xml(xmlfile)], ignore_index=True)
 
     return extracted_data
