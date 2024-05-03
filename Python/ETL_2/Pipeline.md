@@ -191,7 +191,7 @@ log_progress("Load phase Ended")
 # Log the completion of the ETL process 
 log_progress("ETL Job Ended")  
 ```
-## Step 6. Loaading data to Postgres.
+## Step 6. Loading data to Postgres.
 
 ```python
 # Create an engine object to connect to the database
@@ -220,3 +220,7 @@ try:
 except Exception as e:
     print(f"Error loading data into table 'names': {e}")
 ```
+
+This is what our data looks like in the database.
+
+![table_names](/Python/ETL_2/images/table_names.png)
