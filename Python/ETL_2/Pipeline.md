@@ -145,7 +145,7 @@ We need to load the transformed data to a CSV file that we can use to load to a 
 
 ```python
 def load_data(target_file, transformed_data): 
-    transformed_data.to_csv(target_file) 
+    transformed_data.to_csv(target_file,index=False) 
 ```
 Finally, we need to implement the logging operation to record the progress of the different operations.
 
