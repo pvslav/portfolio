@@ -157,7 +157,7 @@ def log_progress(message):
     with open(log_file,"a") as f: 
         f.write(timestamp + ',' + message + '\n') 
 ```
-## Step 4. Testing ETL process.
+## Step 5. Testing ETL process.
 
 Now, we will test the functions we have developed so far and log our progress along the way. 
 
@@ -190,4 +190,33 @@ log_progress("Load phase Ended")
  
 # Log the completion of the ETL process 
 log_progress("ETL Job Ended")  
+```
+## Step 6. Loaading data to Postgres.
+
+```python
+# Create an engine object to connect to the database
+engine = create_engine("postgresql+psycopg2://postgres@localhost/postgres")
+
+metadata = MetaData(schema="uni")
+names_table = Table('names', metadata,
+                    Column('Name', String),
+                    Column('Weight', Float),
+                    Column('Height', Float),
+                    Column('City', String),
+                    )
+
+try:
+    metadata.create_all(engine)
+    print("Table 'names' successfully created in schema 'uni'.")
+except Exception as e:
+    print(f"Error creating table 'names': {e}")
+
+# Read data from CSV file into DataFrame
+data = pd.read_csv('transformed_data.csv')
+
+try:
+    data.to_sql('names', engine, schema='uni', if_exists='append', index=False)
+    print("Data successfully loaded into table 'names' in schema 'uni'.")
+except Exception as e:
+    print(f"Error loading data into table 'names': {e}")
 ```
