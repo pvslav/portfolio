@@ -4,6 +4,7 @@ import json
 import pandas as pd 
 import xml.etree.ElementTree as ET 
 from datetime import datetime 
+from sqlalchemy import create_engine, MetaData, Table, Column, String, Integer, Float
 
 log_file = "log_file.txt"
 target_file = "transformed_data.csv"
@@ -132,3 +133,29 @@ log_progress("Load phase Ended")
 
 # Log the completion of the ETL process
 log_progress("ETL Job Ended")
+
+# Create an engine object to connect to the database
+engine = create_engine("postgresql+psycopg2://postgres@localhost/postgres")
+
+metadata = MetaData(schema="uni")
+names_table = Table('names', metadata,
+                    Column('Name', String),
+                    Column('Weight', Float),
+                    Column('Height', Float),
+                    Column('City', String),
+                    )
+
+try:
+    metadata.create_all(engine)
+    print("Table 'names' successfully created in schema 'uni'.")
+except Exception as e:
+    print(f"Error creating table 'names': {e}")
+
+# Read data from CSV file into DataFrame
+data = pd.read_csv('transformed_data.csv')
+
+try:
+    data.to_sql('names', engine, schema='uni', if_exists='append', index=False)
+    print("Data successfully loaded into table 'names' in schema 'uni'.")
+except Exception as e:
+    print(f"Error loading data into table 'names': {e}")
