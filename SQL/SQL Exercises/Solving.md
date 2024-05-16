@@ -65,3 +65,26 @@ FROM ranked_spend
 WHERE ranking <= 2
 ORDER BY category, ranking
 ```
+#### 4. Active User Retention _(DataLemur)_
+Assume you're given a table containing information on Facebook user actions. Write a query to obtain number of monthly active users (MAUs) in July 2022, including the month in numerical format "1, 2, 3".
+
+Hint: An active user is defined as a user who has performed actions such as 'sign-in', 'like', or 'comment' in both the current month and the previous month.
+
+
+```sql
+select 
+current_month, count(distinct user_id)
+from 
+  (select user_id, 
+    extract(month from event_date) as current_month, 
+    case 
+      when extract(month from event_date) - 
+      coalesce(lag(extract(month from event_date)) over(partition by user_id order by extract(month from event_date)), -1) = 1
+      then 'Active' else 'Inactive' 
+    end as user_status
+  from user_actions
+  where event_type in ('like', 'comment')
+  ) a
+where user_status = 'Active'
+group by current_month
+```
