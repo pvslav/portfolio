@@ -3,7 +3,7 @@ Solve SQL exercises from popular online sources, such as DataLemur and Leetcode,
 
 ## Exercises
 
-#### User's Third Transaction _(DataLemur)_
+#### 1. User's Third Transaction _(DataLemur)_
 Assume you are given the table below on Uber transactions made by users. Write a query to obtain the third transaction of every user. Output the user id, spend and transaction date.
 
 ``` sql
@@ -21,7 +21,7 @@ FROM numbered_transactions
 WHERE row_num = 3;
 ```
 
-#### Sending vs. Opening Snaps _(DataLemur)_
+#### 2. Sending vs. Opening Snaps _(DataLemur)_
 Assume you're given tables with information on Snapchat users, including their ages and time spent sending and opening snaps. Write a query to obtain a breakdown of the time spent sending vs. opening snaps as a percentage of total time spent on these activities grouped by age group. Round the percentage to 2 decimal places in the output.
 
 ```sql
@@ -40,7 +40,7 @@ WHERE activities.activity_type IN ('send', 'open')
 GROUP BY age.age_bucket;
 ```
 
-#### Highest-Grossing Items _(DataLemur)_
+#### 3. Highest-Grossing Items _(DataLemur)_
 Assume you're given a table containing data on Amazon customers and their spending on products in different category, write a query to identify the top two highest-grossing products within each category in the year 2022. The output should include the category, product, and total spend.
 
 ```sql
