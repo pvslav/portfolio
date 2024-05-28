@@ -41,3 +41,5 @@ def extract(url):
 df = extract(url)
 print(df)
 ```
+We'll get the following data from the page:
+![extract_data](/Python/ETL_3/images/extract_data.png)
