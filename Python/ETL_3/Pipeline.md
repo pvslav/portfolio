@@ -44,3 +44,41 @@ print(df)
 We'll get the following data from the page:
 
 ![extract_data](/Python/ETL_3/images/extract_data.png)
+
+We also need to get the exchange rate for the current date. We retrieve exchange rates for USD and GBP. Then we convert USD to EUR and add a date column.
+
+```python
+def extract_rate(url, output_file):
+    
+    # Get the XML data
+    response = requests.get(url)
+    if response.status_code == 200:
+        root = ET.fromstring(response.content)
+        
+        # Find the Cube nodes with currency and rate attributes
+        cubes = root.findall(".//{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}Cube[@currency][@rate]")
+        if cubes:
+            data = []
+            for cube in cubes:
+                currency = cube.get('currency')
+                if currency in ['USD', 'GBP']:
+                    if currency == 'USD':
+                        rate = round(1.0 / float(cube.get('rate')), 2)
+                        currency = 'EUR'
+                    else:
+                        rate = round(float(cube.get('rate')), 2)
+                    data.append({'Currency': currency, 'Rate': rate, 'Date': date.today()})
+
+            # Create a DataFrame and save it to a CSV file
+            df = pd.DataFrame(data)
+            df.to_csv(output_file, index=False)
+
+            print(f"Exchange rate data for EUR and GBP saved to file: {output_file}")
+        else:
+            print("Unable to find Cube nodes with currency and rate attributes in the XML file.")
+    else:
+        print(f"Error executing the request. Error code: {response.status_code}")
+
+
+extract_rate('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml', 'currency_rates.csv')
+```
