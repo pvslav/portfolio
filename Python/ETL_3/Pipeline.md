@@ -82,3 +82,5 @@ def extract_rate(url, output_file):
 
 extract_rate('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml', 'currency_rates.csv')
 ```
+
+![extract_rate](/Python/ETL_3/images/extract_rate.png)
