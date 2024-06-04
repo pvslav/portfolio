@@ -24,7 +24,7 @@ def extract(url):
     rows = tables[0].find_all('tr')
 
     for row in rows:
-        if count < 15:
+        if count < 10:
             col = row.find_all('td')
             if len(col) != 0:
                 rank = int(col[0].contents[0])
@@ -86,3 +86,29 @@ extract_rate('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml', 'c
 After executing this function, this is what our csv file will look like.
 
 ![extract_rate](/Python/ETL_3/images/extract_rate.png)
+
+## Step 2. Transform data
+
+This function renames column 'Total_assets' to 'MC_USD_Billion', adds two columns 'MC_GBP_Billion' and 'MC_EUR_Billion' and places in them the data from column 'MC_USD_Billion', converted according to the exchange rates that are in the csv file.
+
+```python
+def transform(df, csv_path):
+    
+    # Read the CSV file with exchange rates and convert it to a dictionary
+    exchange_rates = pd.read_csv(csv_path)
+    exchange_rate_dict = dict(zip(exchange_rates['Currency'], exchange_rates['Rate']))
+    
+    # Rename the "Total_assets" column to "MC_USD_Billion"
+    df = df.rename(columns={'Total_assets': 'MC_USD_Billion'})
+    
+    # Add the transformed total asset columns to the DataFrame
+    df['MC_GBP_Billion'] = [round(x * exchange_rate_dict['GBP'], 2) for x in df['MC_USD_Billion']]
+    df['MC_EUR_Billion'] = [round(x * exchange_rate_dict['EUR'], 2) for x in df['MC_USD_Billion']]
+    
+    return df
+
+# Example usage
+csv_path = 'currency_rates.csv'
+transformed_df = transform(df, csv_path)
+transformed_df
+```
