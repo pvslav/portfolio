@@ -113,4 +113,5 @@ transformed_df = transform(df, csv_path)
 transformed_df
 ```
 We'll get the following result
+
 ![transform](/Python/ETL_3/images/transform.png)
