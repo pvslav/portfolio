@@ -115,3 +115,19 @@ transformed_df
 We'll get the following result
 
 ![transform](/Python/ETL_3/images/transform.png)
+
+## Step 2. Loading to csv
+
+This function will load the transformed data to the csv file.
+
+```python
+def load_to_csv(df):
+   
+    output_dir = 'output'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    output_path = os.path.join(output_dir, f'output_{current_date}.csv')
+    df.to_csv(output_path, index=False)
+    print(f"Data saved to {output_path}")
+```
