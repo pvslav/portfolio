@@ -122,13 +122,12 @@ This function will load the transformed data to the csv file.
 
 ```python
 def load_to_csv(df):
-   
-    output_dir = 'output'
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    
-    output_path = os.path.join(output_dir, f'output_{current_date}.csv')
-    df.to_csv(output_path, index=False)
-    print(f"Data saved to {output_path}")
+    current_date = datetime.date.today().strftime('%Y%m%d')
+    output_filename = f"date_{current_date}.csv"
+    df.to_csv(output_filename, index=False)
+    print(f"Data saved to {output_filename}")
+
+# Example usage
+load_to_csv(transformed_df)
 ```
 
