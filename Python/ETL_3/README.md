@@ -116,21 +116,8 @@ We'll get the following result
 
 ![transform](/Python/ETL_3/images/transform.png)
 
-## Step 3. Loading to csv
 
-This function will load the transformed data to the csv file.
-
-```python
-def load_to_csv(df):
-    current_date = datetime.date.today().strftime('%Y%m%d')
-    output_filename = f"date_{current_date}.csv"
-    df.to_csv(output_filename, index=False)
-    print(f"Data saved to {output_filename}")
-
-# Example usage
-load_to_csv(transformed_df)
-```
-## Step 4. Create schema and table in the database
+## Step 3. Create schema and table in the database
 
 As the next step, we will write a function that will create a new scheme and a table in the database.
 
@@ -161,4 +148,19 @@ def create_schema_and_table():
     print(f"Schema '{schema}' and table '{table.name}' created successfully.")
 
 create_schema_and_table()
+```
+
+## Step 4. Loading ttansformed data to the database
+
+This function will load the transformed data to the database.
+
+```python
+def load_to_database(df):
+    schema = 'banks'
+    connectable = create_engine("postgresql+psycopg2://postgres@localhost/postgres")
+    
+    # Loading data into the table
+    df.to_sql('largest_banks', connectable, schema=schema, if_exists='replace', index=False)
+
+load_to_database(transformed_df)
 ```
