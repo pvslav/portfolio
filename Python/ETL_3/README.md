@@ -119,7 +119,7 @@ We'll get the following result
 
 ## Step 3. Create schema and table in the database
 
-As the next step, we will write a function that will create a new scheme and a table in the database.
+As the next step, we will write a function that will create a new schema and a table in the database.
 
 ```python
 def create_schema_and_table():
