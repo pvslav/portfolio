@@ -116,7 +116,7 @@ We'll get the following result
 
 ![transform](/Python/ETL_3/images/transform.png)
 
-## Step 2. Loading to csv
+## Step 3. Loading to csv
 
 This function will load the transformed data to the csv file.
 
@@ -130,4 +130,35 @@ def load_to_csv(df):
 # Example usage
 load_to_csv(transformed_df)
 ```
+## Step 4. Create schema and table in the database
 
+As the next step, we will write a function that will create a new scheme and a table in the database.
+
+```python
+def create_schema_and_table():
+    schema = "banks"
+    connectable = create_engine("postgresql+psycopg2://postgres@localhost/postgres")
+
+    with connectable.connect() as connection:
+        if not Inspector(connection).has_schema(schema):
+            connection.execute(CreateSchema(schema))
+            connection.commit()
+
+        # Create metadata for the table
+        metadata = MetaData(schema=schema)
+
+        # Define the table structure
+        table = Table('largest_banks', metadata,
+                     Column('rank', Integer),
+                     Column('bank_name', String),
+                     Column('mc_usd_billion', Float),
+                     Column('mc_gbp_billion', Float),
+                     Column('mc_eur_billion', Float))
+
+        # Create the table
+        metadata.create_all(connectable)
+
+    print(f"Schema '{schema}' and table '{table.name}' created successfully.")
+
+create_schema_and_table()
+```
