@@ -164,3 +164,7 @@ def load_to_database(df):
 
 load_to_database(transformed_df)
 ```
+
+This is what our table looks like after loading the data.
+
+![largest_banks](/Python/ETL_3/images/largest_banks.png)
