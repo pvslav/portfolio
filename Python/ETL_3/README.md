@@ -168,3 +168,38 @@ load_to_database(transformed_df)
 This is what our table looks like after loading the data.
 
 ![largest_banks](/Python/ETL_3/images/largest_banks.png)
+
+## Step 5. Logging
+
+```python
+def main():
+    try:
+        # Configure logging
+        logging.basicConfig(
+            filename='app.log',
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S'
+        )
+        
+        # Call all the functions
+        bank_data = extract(url)
+        bank_data.to_csv(output_file_banks, index=False)
+        logging.info(f"Bank data saved to {output_file_banks}")
+
+        extract_rate(url_rate, output_file_rates)
+        logging.info(f"Currency rates saved to {output_file_rates}")
+        
+        transformed_df = transform(bank_data, output_file_rates)
+        logging.info("Data transformation completed successfully.")
+        table = create_schema_and_table()
+        logging.info(f"Schema and table created successfully.")
+        load_to_database(transformed_df, table)
+        logging.info(f"Data loaded to the database.")
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
+```
