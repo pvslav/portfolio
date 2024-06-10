@@ -171,6 +171,8 @@ This is what our table looks like after loading the data.
 
 ## Step 5. Logging
 
+Finally, we need to implement the logging operation to record the progress of the different operations.
+
 ```python
 def main():
     try:
