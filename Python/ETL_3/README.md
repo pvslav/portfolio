@@ -12,6 +12,9 @@ We write a function that will parse the data we need from a table on the Wikiped
 
 ```python
 url = 'https://en.wikipedia.org/wiki/List_of_largest_banks'
+url_rate = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+output_file_banks = 'bank_data.csv'
+output_file_rates = 'currency_rates.csv'
 
 def extract(url,max_rows=10):
     df = pd.DataFrame(columns=["Rank", "Bank_Name", "Total_assets"])
