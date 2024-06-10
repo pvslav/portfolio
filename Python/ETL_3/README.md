@@ -13,7 +13,7 @@ We write a function that will parse the data we need from a table on the Wikiped
 ```python
 url = 'https://en.wikipedia.org/wiki/List_of_largest_banks'
 
-def extract(url):
+def extract(url,max_rows=10):
     df = pd.DataFrame(columns=["Rank", "Bank_Name", "Total_assets"])
     count = 0
 
