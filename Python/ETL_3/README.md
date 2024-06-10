@@ -48,10 +48,10 @@ We'll get the following data from the page:
 We also need to get the exchange rate for the current date. We retrieve exchange rates for USD and GBP. Then we convert USD to EUR and add a date column.
 
 ```python
-def extract_rate(url, output_file):
+def extract_rate(url_rate, output_file):
     
     # Get the XML data
-    response = requests.get(url)
+    response = requests.get(url_rate)
     if response.status_code == 200:
         root = ET.fromstring(response.content)
         
