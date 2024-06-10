@@ -153,7 +153,7 @@ def create_schema_and_table():
 create_schema_and_table()
 ```
 
-## Step 4. Loading ttansformed data to the database
+## Step 4. Loading transformed data to the database
 
 This function will load the transformed data to the database.
 
