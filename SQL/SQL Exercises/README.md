@@ -88,6 +88,7 @@ from
 where user_status = 'Active'
 group by current_month
 ```
+
 #### 5. Median Google Search Frequency _(DataLemur)_
 Google's marketing team is making a Superbowl commercial and needs a simple statistic to put on their TV ad: the median number of searches a person made last year.
 
@@ -110,3 +111,22 @@ SELECT
 FROM t1;
 ```
 
+#### 6. Advertiser Status _(DataLemur)_
+You're provided with two tables: the advertiser table contains information about advertisers and their respective payment status, and the daily_pay table contains the current payment information for advertisers, and it only includes advertisers who have made payments.
+
+Write a query to update the payment status of Facebook advertisers based on the information in the daily_pay table. The output should include the user ID and their current payment status, sorted by the user id.
+
+```sql
+SELECT
+  user_id,
+  CASE
+    WHEN paid IS NULL THEN 'CHURN'
+    WHEN status = 'CHURN' AND paid IS NOT NULL THEN 'RESURRECT'
+    WHEN status IS NULL AND paid IS NOT NULL THEN 'NEW'
+    ELSE 'EXISTING'
+  END AS new_status
+FROM 
+  advertiser FULL OUTER JOIN daily_pay USING(user_id)
+ORDER BY 
+  user_id
+```
