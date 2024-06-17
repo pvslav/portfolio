@@ -130,7 +130,7 @@ FROM
 ORDER BY 
   user_id
 ```
-#### 6. 3-Topping Pizzas _(DataLemur)_
+#### 7. 3-Topping Pizzas _(DataLemur)_
 
 You’re a consultant for a major pizza chain that will be running a promotion where all 3-topping pizzas will be sold for a fixed price, and are trying to understand the costs involved.
 
