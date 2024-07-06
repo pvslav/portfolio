@@ -19,6 +19,7 @@ default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
     'start_date': datetime(2023, 1, 1),
+    'email': 'cavin@bk.ru',
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
@@ -59,7 +60,7 @@ def upload_to_github(**context):
         exchange_rates.to_csv(filename, index=False)
         
         # Initialize the Git repository
-        repo = git.Repo('path/to/your/github/repository')
+        repo = git.Repo('https://github.com/pvslav/portfolio/tree/main/Python/Airflow')
         repo.git.add(filename)
         repo.index.commit(f"Add {filename}")
         origin = repo.remote(name='origin')
@@ -67,7 +68,7 @@ def upload_to_github(**context):
         
         print(f"File {filename} uploaded to GitHub.")
 
-with DAG('currency_rates_to_github', default_args=default_args, schedule_interval='0 0 * * 0-6') as dag:
+with DAG('currency_rates_to_github', default_args=default_args, schedule_interval='0 12 * * 1-7') as dag:
     extract_rates_task = PythonOperator(
         task_id='extract_rates',
         python_callable=extract_rates,
