@@ -155,7 +155,9 @@ ORDER BY
 ```
 #### 8. International Call Percentage _(DataLemur)_
 
-A phone call is considered an international call when the person calling is in a different country than the person receiving the call. What percentage of phone calls are international? Round the result to 1 decimal. Assumption:
+A phone call is considered an international call when the person calling is in a different country than the person receiving the call. What percentage of phone calls are international? Round the result to 1 decimal. 
+
+Assumption:
 
   The caller_id in phone_info table refers to both the caller and receiver.
     
@@ -172,4 +174,33 @@ FROM
   phone_calls AS calls
     JOIN phone_info AS caller ON calls.caller_id = caller.caller_id
     JOIN phone_info AS receiver ON calls.receiver_id = receiver.caller_id
+```
+
+#### 9. Histogram of Users and Purchases _(DataLemur)_
+
+Assume you're given a table on Walmart user transactions. Based on their most recent transaction date, write a query that retrieve the users along with the number of products they bought. Output the user's most recent transaction date, user ID, and the number of products, sorted in chronological order by the transaction date.
+
+```sql
+WITH last_user_transactions AS (
+  SELECT 
+    product_id,
+    user_id,
+    transaction_date,
+    FIRST_VALUE(transaction_date) OVER(PARTITION BY user_id ORDER BY transaction_date DESC) AS recent_payment_date
+  FROM 
+    user_transactions
+)
+SELECT
+  recent_payment_date,
+  user_id,
+  COUNT(DISTINCT product_id) AS purchase_count
+FROM
+  last_user_transactions
+WHERE
+  transaction_date = recent_payment_date
+GROUP BY
+  recent_payment_date,
+  user_id
+ORDER BY
+  recent_payment_date
 ```
