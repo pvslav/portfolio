@@ -204,3 +204,24 @@ GROUP BY
 ORDER BY
   recent_payment_date
 ```
+
+#### 10. Pharmacy Analytics  _(DataLemur)_
+
+CVS Health is trying to better understand its pharmacy sales, and how well different drugs are selling.
+
+Write a query to find the top 2 drugs sold, in terms of units sold, for each manufacturer. List your results in alphabetical order by manufacturer.
+
+```sql
+WITH sales_cte AS (
+SELECT
+  manufacturer,
+  drug,
+  RANK() OVER(PARTITION BY manufacturer ORDER BY units_sold DESC) AS rnk
+FROM pharmacy_sales)
+SELECT
+  manufacturer,
+  drug AS top_drugs
+FROM sales_cte
+WHERE rnk <= 2
+ORDER BY manufacturer
+```
