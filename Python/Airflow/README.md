@@ -18,7 +18,7 @@ import git
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2023, 1, 1),
+    'start_date': datetime(2024, 7, 8),
     'email': 'cavin@bk.ru',
     'email_on_failure': False,
     'email_on_retry': False,
