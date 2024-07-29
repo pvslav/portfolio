@@ -1,1 +1,70 @@
+name: Currency Rates to GitHub
+
+on:
+  schedule:
+    - cron: '0 12 * * 1-7'  # Запускать задачу ежедневно в 12:00 UTC (по будням)
+
+jobs:
+
+  extract_and_upload:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas requests gitpython
+    
+    - name: Extract exchange rates
+      run: |
+        import pandas as pd
+        import requests
+        import xml.etree.ElementTree as ET
+        from datetime import date
+
+        # Get the XML data
+        url_rate = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+        response = requests.get(url_rate)
+        if response.status_code == 200:
+            root = ET.fromstring(response.content)
+            
+            # Find the Cube nodes with currency and rate attributes
+            cubes = root.findall(".//{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}Cube[@currency][@rate]")
+            if cubes:
+                data = []
+                for cube in cubes:
+                    currency = cube.get('currency')
+                    rate = round(float(cube.get('rate')), 2)
+                    data.append([currency, rate])
+                
+                # Create a DataFrame and save it to a CSV file
+                df = pd.DataFrame(data, columns=['Currency', str(date.today())])
+                df.to_csv(f'exchange_rates_{str(date.today())}.csv', index=False)
+            else:
+                print("Unable to find Cube nodes with currency and rate attributes in the XML file.")
+        else:
+            print(f"Error executing the request. Error code: {response.status_code}")
+    
+    - name: Upload to GitHub
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        import git
+        
+        # Initialize the Git repository
+        repo = git.Repo('.')
+        repo.git.add('exchange_rates_*.csv')
+        repo.index.commit(f"Add exchange rates for {str(date.today())}")
+        origin = repo.remote(name='origin')
+        origin.push()
+        
+        print("File uploaded to GitHub.")
+
 
