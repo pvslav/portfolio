@@ -21,6 +21,7 @@ jobs:
       env:
         OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
       run: |
+        #!/usr/bin/env python
         import urllib.request
         import json
         from datetime import datetime
@@ -42,7 +43,7 @@ jobs:
 
         weather_report = "\n".join([f"{data['city']}: {data['temperature']}°C, {data['description']}" for data in weather_data])
 
-        current_date = datetime.now().strftime("%Y-%m-%d")
+        current_date = datetime.now().strftime("%Y-%m-%D")
         file_name = f"weather_report_{current_date}.txt"
 
         if not os.path.exists(".git"):
