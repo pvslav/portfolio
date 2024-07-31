@@ -2,15 +2,19 @@ name: Currency Rates to GitHub
 
 on:
   schedule:
-    - cron: '40 18 * * *'  
+    - cron: '05 19 * * *'  
 
 jobs:
-
   extract_and_upload:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
     
     - name: Set up Python
       uses: actions/setup-python@v4
