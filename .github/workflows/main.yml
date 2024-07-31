@@ -1,72 +1,70 @@
-name: Currency Rates to GitHub
+name: Weather Report
 
 on:
   schedule:
-    - cron: '25 19 * * *'  
+    - cron: '58 19 * * *'
 
 jobs:
+
   extract_and_upload:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.9
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pandas requests gitpython
-    
-    - name: Extract exchange rates
-      run: |
-        import pandas as pd
-        import requests
-        import xml.etree.ElementTree as ET
-        from datetime import date
+        pip install requests gitpython
 
-        # Get the XML data
-        url_rate = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
-        response = requests.get(url_rate)
-        if response.status_code == 200:
-            root = ET.fromstring(response.content)
-            
-            # Find the Cube nodes with currency and rate attributes
-            cubes = root.findall(".//{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}Cube[@currency][@rate]")
-            if cubes:
-                data = []
-                for cube in cubes:
-                    currency = cube.get('currency')
-                    rate = round(float(cube.get('rate')), 2)
-                    data.append([currency, rate])
-                
-                # Create a DataFrame and save it to a CSV file
-                df = pd.DataFrame(data, columns=['Currency', str(date.today())])
-                df.to_csv(f'exchange_rates_{str(date.today())}.csv', index=False)
-            else:
-                print("Unable to find Cube nodes with currency and rate attributes in the XML file.")
-        else:
-            print(f"Error executing the request. Error code: {response.status_code}")
-    
-    - name: Upload to GitHub
+    - name: Get weather data
       env:
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_ACTIONS_TOKEN }}
+        OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
       run: |
+        import requests
+        from datetime import datetime
+        import os
         import git
-        
-        # Initialize the Git repository
-        repo = git.Repo('.')
-        repo.git.add('exchange_rates_*.csv')
-        repo.index.commit(f"Add exchange rates for {str(date.today())}")
+
+        def get_weather_data(city):
+            url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={os.environ['OPENWEATHER_API_KEY']}&units=metric"
+            response = requests.get(url)
+            data = response.json()
+            return {
+                "city": city,
+                "temperature": data["main"]["temp"],
+                "description": data["weather"][0]["description"]
+            }
+
+        cities = ["Minsk", "Paris", "Munich"]
+        weather_data = [get_weather_data(city) for city in cities]
+
+        weather_report = "\n".join([f"{data['city']}: {data['temperature']}°C, {data['description']}" for data in weather_data])
+
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        file_name = f"weather_report_{current_date}.txt"
+
+        if not os.path.exists(".git"):
+            repo = git.Repo.init(".")
+        else:
+            repo = git.Repo(".")
+
+        with open(file_name, "w") as f:
+            f.write(weather_report)
+        repo.git.add(file_name)
+        repo.index.commit(f"Add weather report for {current_date}")
         origin = repo.remote(name='origin')
         origin.push()
-        
-        print("File uploaded to GitHub.")
+
+        print(f"Weather report saved to {file_name} and uploaded to GitHub.")
+
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v9
+      with:
+        default_author: github_actions
+        message: 'Add weather report'
