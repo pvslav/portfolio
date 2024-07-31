@@ -2,7 +2,7 @@ name: Weather Report
 
 on:
   schedule:
-    - cron: '58 19 * * *'
+    - cron: '0 9 * * *'
 
 jobs:
 
@@ -17,24 +17,20 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests gitpython
-
     - name: Get weather data
       env:
         OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
       run: |
-        import requests
+        import urllib.request
+        import json
         from datetime import datetime
         import os
         import git
 
         def get_weather_data(city):
             url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={os.environ['OPENWEATHER_API_KEY']}&units=metric"
-            response = requests.get(url)
-            data = response.json()
+            with urllib.request.urlopen(url) as response:
+                data = json.load(response)
             return {
                 "city": city,
                 "temperature": data["main"]["temp"],
