@@ -2,7 +2,7 @@ name: Currency Rates to GitHub
 
 on:
   schedule:
-    - cron: '30 19 31 07 2-7'  
+    - cron: '31 19 31 7 3'  
 
 jobs:
 
