@@ -2,11 +2,11 @@ name: Currency Rates to GitHub
 
 on:
   schedule:
-    - cron: '17 19 * * *'  
+    - cron: '50 18 * * *'  
 
 jobs:
   extract_and_upload:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     
     steps:
     - uses: actions/checkout@v3
@@ -32,7 +32,6 @@ jobs:
         import requests
         import xml.etree.ElementTree as ET
         from datetime import date
-
         # Get the XML data
         url_rate = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
         response = requests.get(url_rate)
@@ -70,5 +69,3 @@ jobs:
         origin.push()
         
         print("File uploaded to GitHub.")
-
-
