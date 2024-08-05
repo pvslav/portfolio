@@ -28,6 +28,7 @@ jobs:
     
     - name: Extract exchange rates
       run: |
+        #!/usr/bin/env python3
         import pandas as pd
         import requests
         import xml.etree.ElementTree as ET
